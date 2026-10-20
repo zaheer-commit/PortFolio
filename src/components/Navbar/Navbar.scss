@@ -1,0 +1,142 @@
+@use '../../styles/variables' as *;
+@font-face {
+  font-family: 'badoga';
+  src: url('../../assets/fonts/badoga.otf') format('opentype');
+}
+
+body, html{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden; 
+    -webkit-text-size-adjust: 100%; /* 👈 این خط را اضافه کنید */
+  text-size-adjust: 100%;
+}
+
+.navbar_hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+
+  span {
+    display: block;
+    width: 25px;
+    height: 2.1px;
+    background-color: $color-dark; 
+    transition: all 0.3s ease;
+  }
+}
+.navbar {
+  width: 100%;
+  background-color: $color-light;
+  margin-bottom: 1px;
+
+  &_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: $container-width;
+    margin: 0 auto;
+    padding: 2rem ;
+  }
+
+  &_links {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 3em;
+    margin: 0;
+    padding: 0;
+
+    a {
+      text-decoration: none;
+      color: $color-text-on-light;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 16px;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+
+  .my_name {
+    text-decoration: none;
+    color: $color-text-on-light;
+    font-family: badoga;
+    font-size: 19px;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+@media (max-width: 600px) {
+  .navbar {
+    &_container {
+      position: relative; 
+      height: 1em;
+    }
+    .my_name {
+      font-size: 1em;
+    }
+    &_hamburger {
+      display: flex;
+      position: absolute;
+      right: 2em; 
+    }
+    &_hamburger.is-active {
+      span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: translateY(-6px) rotate(-43deg);
+      }
+    }
+      &_links {
+        position: absolute;
+        top: 90%; 
+        left: 0;
+        width: 100%;
+        background-color: $color-light;
+        box-sizing: border-box;      
+        display: flex;
+        align-items: center;
+        visibility: hidden;
+        transform: translateY(-15px);
+        transition: all 0.4s ease-in-out;
+        justify-content: center; 
+        opacity: 0;
+        max-height: 0; 
+        overflow: hidden;
+        border-radius: 0.5em;
+      li {
+        width: auto; 
+        text-align: center;
+        padding-bottom: 1em;
+      }
+      a {
+        display: block;
+        color: $color-dark;
+        font-size: 13px !important; 
+        width: auto;
+        transition: color 0.2s ease;
+        white-space: nowrap; 
+
+        &:hover {
+          color: $color-primary;
+        }
+      }
+      
+      &.is-active {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0); 
+          max-height: 200px;
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@use '../../styles/variables' as *;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+
+  &_main {
+    flex: 1;
+    width: 100%;
+  }
+}
